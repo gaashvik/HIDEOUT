@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gexf xmlns="http://www.gexf.net/1.3draft" xmlns:viz="http://www.gexf.net/1.3draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.3draft http://www.gexf.net/1.3draft/gexf.xsd">
+  <graph defaultedgetype="directed" mode="static">
+    <attributes class="node" mode="static">
+      <attribute id="0" title="name" type="string" />
+    </attributes>
+    <node id="Bob" label="Bob">
+      <attvalues>
+        <attvalue for="0" value="Bob" />
+      </attvalues>
+    </node>
+    <node id="Eve" label="Eve">
+      <attvalues>
+        <attvalue for="0" value="Eve" />
+      </attvalues>
+    </node>
+    <node id="Alice" label="Alice">
+      <attvalues>
+        <attvalue for="0" value="Alice" />
+      </attvalues>
+    </node>
+    <node id="Grace" label="Grace">
+      <attvalues>
+        <attvalue for="0" value="Grace" />
+      </attvalues>
+    </node>
+    <node id="Charlie" label="Charlie">
+      <attvalues>
+        <attvalue for="0" value="Charlie" />
+      </attvalues>
+    </node>
+    <node id="Hank" label="Hank">
+      <attvalues>
+        <attvalue for="0" value="Hank" />
+      </attvalues>
+    </node>
+    <node id="shubh" label="shubh">
+      <attvalues>
+        <attvalue for="0" value="shubh" />
+      </attvalues>
+    </node>
+    <node id="Priyansu" label="Priyansu">
+      <attvalues>
+        <attvalue for="0" value="Priyansu" />
+      </attvalues>
+    </node>
+    <node id="Ivy" label="Ivy">
+      <attvalues>
+        <attvalue for="0" value="Ivy" />
+      </attvalues>
+    </node>
+    <edge source="Bob" target="Eve" />
+    <edge source="Alice" target="Bob" />
+    <edge source="Eve" target="Grace" />
+    <edge source="Alice" target="Charlie" />
+    <edge source="Alice" target="Eve" />
+    <edge source="Alice" target="Hank" />
+    <edge source="shubh" target="Alice" />
+    <edge source="Priyansu" target="Ivy" />
+    <edge source="shubh" target="Priyansu" />
+    <edge source="shubh" target="Hank" />
+    <edge source="Alice" target="shubh" />
+    <edge source="Alice" target="Ivy" />
+  </graph>
+</gexf>

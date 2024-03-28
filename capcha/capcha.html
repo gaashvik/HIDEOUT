@@ -1,0 +1,62 @@
+#include <iostream>
+#include <queue>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
+using namespace std;
+
+
+const int MAX_ORDERS = 5;
+queue<int> orders;
+mutex mtx;
+condition_variable cv_producer, cv_consumer;
+
+void customer(int id) {
+unique_lock<std::mutex> lock(mtx);
+cv_producer.wait(lock, []{return orders.size() < MAX_ORDERS;});
+orders.push(id);
+cout << "Customer " << id << " placed an order. Remaining capacity: " << MAX_ORDERS - orders.size() <<endl;
+lock.unlock();
+cv_consumer.notify_all();
+}
+
+
+
+
+
+void chef(int id) {
+
+while (true) {
+unique_lock<std::mutex> lock(mtx);
+cv_consumer.wait(lock, []{return !orders.empty();});
+int order = orders.front();
+
+orders.pop();
+cout << "Chef " << id << " is preparing order: " << order << ". Remaining orders: " << orders.size() <<endl;
+lock.unlock();
+cv_producer.notify_all();
+}
+}
+
+
+
+int main() {
+
+thread customers[10];
+thread chefs[2];
+
+for (int i = 0; i < 10; ++i) {
+customers[i] = std::thread(customer, i+1);
+}
+
+for (int i = 0; i < 2; ++i) {
+chefs[i] = std::thread(chef, i+1);
+}
+for (int i = 0; i < 10; ++i) {
+customers[i].join();
+}
+
+for (int i = 0; i < 2; ++i) {
+chefs[i].detach();
+}
+}
